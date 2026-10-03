@@ -1,6 +1,19 @@
 # 更新日志 / Changelog
 
-本项目遵循语义化版本号的补丁位递增：`v0.1.2` → `v0.1.3`（+0.0.1）。
+本项目遵循语义化版本号的补丁位递增：`v0.1.2` → `v0.1.3` → `v0.1.4`（每次 +0.0.1）。
+
+---
+
+## v0.1.4 (2026-10-04)
+
+### 🔧 修复
+
+- **商店语言识别**：`manifest.json` 的 `name` / `description` 由硬编码字符串改为 i18n 占位符 `__MSG_extensionName__` / `__MSG_extensionDescription__`，新增 `default_locale: zh_CN` 与 `_locales/zh_CN`、`_locales/en` 两份 `messages.json`。此前 Partner Center 因缺少语言消息引用而识别不出语言代号，商店一览只显示英语；按 Microsoft 官方文档修复后可被识别为「English (United States) + 中文(简体)」。
+- 打包脚本 `build.py` 同步把 `_locales/` 目录打进扩展包。
+
+### English
+
+**v0.1.4** — Fixed store language detection: replaced the hardcoded manifest `name` / `description` with i18n placeholders (`__MSG_extensionName__` / `__MSG_extensionDescription__`), added `default_locale` and `_locales/{zh_CN,en}/messages.json`. Without these message references Partner Center could not detect the locale codes and the Store Listings tab only showed English (per the official Microsoft docs). The packaging script now includes `_locales/` in the zip.
 
 ---
 

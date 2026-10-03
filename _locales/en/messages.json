@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "AutoB2Y",
+    "description": "Extension name / 扩展名称"
+  },
+  "extensionDescription": {
+    "message": "Synchronize Bilibili Danmaku onto YouTube's native player (在 YouTube 原生播放器上同步显示 Bilibili 弹幕)",
+    "description": "Short description / 扩展简短说明"
+  }
+}
