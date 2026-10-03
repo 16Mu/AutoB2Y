@@ -1,19 +1,6 @@
 # 更新日志 / Changelog
 
-本项目遵循语义化版本号的补丁位递增：`v0.1.2` → `v0.1.3` → `v0.1.4`（每次 +0.0.1）。
-
----
-
-## v0.1.4 (2026-10-04)
-
-### 🔧 修复
-
-- **商店语言识别**：`manifest.json` 的 `name` / `description` 由硬编码字符串改为 i18n 占位符 `__MSG_extensionName__` / `__MSG_extensionDescription__`，新增 `default_locale: zh_CN` 与 `_locales/zh_CN`、`_locales/en` 两份 `messages.json`。此前 Partner Center 因缺少语言消息引用而识别不出语言代号，商店一览只显示英语；按 Microsoft 官方文档修复后可被识别为「English (United States) + 中文(简体)」。
-- 打包脚本 `build.py` 同步把 `_locales/` 目录打进扩展包。
-
-### English
-
-**v0.1.4** — Fixed store language detection: replaced the hardcoded manifest `name` / `description` with i18n placeholders (`__MSG_extensionName__` / `__MSG_extensionDescription__`), added `default_locale` and `_locales/{zh_CN,en}/messages.json`. Without these message references Partner Center could not detect the locale codes and the Store Listings tab only showed English (per the official Microsoft docs). The packaging script now includes `_locales/` in the zip.
+本项目遵循语义化版本号的补丁位递增：`v0.1.2` → `v0.1.3`（+0.0.1）。
 
 ---
 
@@ -43,10 +30,11 @@
 
 ### 🔧 修复
 
+- **商店语言识别**：`manifest.json` 的 `name` / `description` 由硬编码字符串改为 i18n 占位符 `__MSG_extensionName__` / `__MSG_extensionDescription__`，新增 `default_locale` 与 `_locales/zh_CN`、`_locales/en` 两份 `messages.json`（打包脚本同步把 `_locales/` 打进包）。此前 Partner Center 因缺少语言消息引用识别不出语言代号，商店一览只剩英语；修复后可识别为「English (United States) + 中文(简体)」（Microsoft 官方文档 *If a single locale appears, but the package includes multiple languages*）。
 - 0 条弹幕时不再误报「已连接」。
 - 匹配成功后徽章残留、旧请求覆盖新状态、页面卡死在「等待中」等问题由上述自愈机制修复。
 - 弹幕引擎 `danmaku.min.js` 本地补丁：为单条弹幕增加可选的 `style.backgroundColor` 底色块（唯一改动，其余与上游一致）。
 
 ### English
 
-**v0.1.3** — rebuilt the panel into a three-tab layout (Danmaku / Export / Blocklist); added danmaku subtitle export (SRT / VTT / ASS / XML) on both YouTube and Bilibili; added one-click jump from Bilibili to the exact YouTube source via the channel-association DB with search fallback; added network retries with timeout + exponential backoff (including -412 risk-control recovery); added SPA route reloading without page refresh; added one-click retry on every failure state; added live region preview (pink band); added a unified-danmaku-color capsule toggle; added match self-healing (12s takeover, 18s restart up to 3×, stale-response drop) and a transient status badge that hides after a successful match; panel auto-dismisses on 4s mouse-leave or when the player control bar hides. Manifest gains `www.youtube.com` + `raw.githubusercontent.com` host permissions; README and screenshots fully refreshed.
+**v0.1.3** — rebuilt the panel into a three-tab layout (Danmaku / Export / Blocklist); added danmaku subtitle export (SRT / VTT / ASS / XML) on both YouTube and Bilibili; added one-click jump from Bilibili to the exact YouTube source via the channel-association DB with search fallback; added network retries with timeout + exponential backoff (including -412 risk-control recovery); added SPA route reloading without page refresh; added one-click retry on every failure state; added live region preview (pink band); added a unified-danmaku-color capsule toggle; added match self-healing (12s takeover, 18s restart up to 3×, stale-response drop) and a transient status badge that hides after a successful match; panel auto-dismisses on 4s mouse-leave or when the player control bar hides. Manifest gains `www.youtube.com` + `raw.githubusercontent.com` host permissions; README and screenshots fully refreshed. Also fixes store language detection: manifest `name` / `description` now use i18n placeholders with `default_locale` + `_locales/{zh_CN,en}` message references, so Partner Center detects both locales instead of English-only.

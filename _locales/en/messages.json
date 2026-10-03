@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "AutoB2Y",
+    "message": "Danmaku Bridge",
     "description": "Extension name / 扩展名称"
   },
   "extensionDescription": {
-    "message": "Synchronize Bilibili Danmaku onto YouTube's native player (在 YouTube 原生播放器上同步显示 Bilibili 弹幕)",
+    "message": "Synchronize Bilibili danmaku onto YouTube's native player",
     "description": "Short description / 扩展简短说明"
   }
 }
