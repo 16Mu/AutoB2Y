@@ -37,6 +37,8 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 #b2y-settings-panel .b2y-header-icon {
@@ -51,6 +53,8 @@
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: normal;
+    white-space: nowrap;
+    flex: none;
 }
 .badge-wait { background: #555; color: #ddd; }
 .badge-success { background: #28a745; color: #fff; }
@@ -118,6 +122,89 @@
 }
 .b2y-color-input::-webkit-color-swatch-wrapper { padding: 0; }
 .b2y-color-input::-webkit-color-swatch { border: 1px solid #555; border-radius: 4px; }
+
+/* ---- 统一弹幕颜色：胶囊开关 + 关联色块 ---- */
+.b2y-switch { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; user-select: none; }
+.b2y-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.b2y-switch-track {
+    position: relative;
+    width: 34px;
+    height: 18px;
+    border-radius: 999px;
+    background: #3a3a3a;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+    transition: background 0.2s;
+    flex: none;
+}
+.b2y-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #bbb;
+    transition: transform 0.2s, background 0.2s;
+}
+.b2y-switch input:checked + .b2y-switch-track { background: #00a1d6; }
+.b2y-switch input:checked + .b2y-switch-track .b2y-switch-thumb { transform: translateX(16px); background: #fff; }
+.b2y-switch input:focus-visible + .b2y-switch-track { outline: 2px solid #3ea6ff; outline-offset: 2px; }
+.b2y-color-label { font-size: 13px; color: #eee; }
+
+.b2y-color-swatch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+    transition: opacity 0.2s, filter 0.2s;
+    flex: none;
+}
+.b2y-color-swatch .b2y-color-input {
+    position: absolute;
+    inset: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.b2y-color-swatch.is-off { opacity: 0.35; filter: grayscale(0.9); }
+.b2y-color-swatch.is-off .b2y-color-input { cursor: not-allowed; }
+.b2y-color-swatch.is-off::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top right, transparent 45%, rgba(255,255,255,0.7) 47%, rgba(255,255,255,0.7) 53%, transparent 55%);
+    pointer-events: none;
+}
+
+.b2y-sub-hint {
+    font-size: 11px;
+    color: #8a8a8a;
+    margin-top: -6px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* ---- 播放器控制栏「弹」按钮：内容严格居中 ---- */
+#b2y-control-btn.ytp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    padding: 0;
+    overflow: hidden;
+}
+#b2y-control-btn .b2y-btn-label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1;
+    pointer-events: none;
+}
 
 .b2y-stepper {
     display: flex;
@@ -188,3 +275,223 @@
 .b2y-tag-local { background: rgba(242, 93, 142, 0.2); border: 1px solid rgba(242, 93, 142, 0.5); }
 .b2y-tag-del { cursor: pointer; color: #ff6b6b; font-weight: bold; }
 .b2y-tag-del:hover { color: #ff0000; }
+
+
+/* ================= 跳转按钮（低调、无彩色 emoji） ================= */
+a.b2y-jump,
+h1.ytd-watch-metadata a.b2y-jump,
+#b2y-bili-actions a.b2y-jump {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 7px;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    line-height: 18px;
+    color: #909090 !important;
+    background: transparent;
+    border: 1px solid rgba(144, 144, 144, 0.5);
+    border-radius: 3px;
+    text-decoration: none !important;
+    vertical-align: middle;
+    cursor: pointer;
+    letter-spacing: normal;
+    transition: color 0.15s, border-color 0.15s;
+}
+a.b2y-jump:hover {
+    color: #3ea6ff !important;
+    border-color: #3ea6ff;
+}
+#b2y-bili-actions a.b2y-jump:hover {
+    color: #00a1d6 !important;
+    border-color: #00a1d6;
+}
+
+/* B站侧按钮容器与提示 */
+.b2y-bili-actions {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+}
+.b2y-bili-hint {
+    font-size: 12px;
+    color: #fb7299;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.b2y-busy {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 导出格式下拉 */
+.b2y-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 9999;
+    min-width: 170px;
+    background: #fff;
+    border: 1px solid #e3e5e7;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    padding: 4px 0;
+}
+.b2y-menu-item {
+    padding: 7px 12px;
+    font-size: 13px;
+    color: #61666d;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.b2y-menu-item:hover {
+    background: #f1f2f3;
+    color: #00a1d6;
+}
+
+/* ================= 面板新增：评论弹幕 / 导出 ================= */
+#b2y-settings-panel .b2y-sep-title {
+    margin-top: 14px;
+    margin-bottom: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #444;
+    font-size: 12px;
+    font-weight: bold;
+    color: #9aa0a6;
+    letter-spacing: 0.5px;
+}
+
+#b2y-settings-panel .b2y-export-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+#b2y-settings-panel .b2y-mini-btn {
+    flex: 1 1 auto;
+    min-width: 46px;
+    padding: 7px 4px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#b2y-settings-panel .b2y-mini-btn:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+#b2y-export-hint {
+    flex: 1 1 100%;
+    margin-top: 4px;
+}
+
+/* ================= 标签页（二级窗口） ================= */
+#b2y-settings-panel .b2y-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+#b2y-settings-panel .b2y-tab {
+    flex: 1;
+    padding: 6px 0;
+    font-size: 12px;
+    background: transparent;
+    color: #9aa0a6;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+#b2y-settings-panel .b2y-tab:hover { color: #fff; }
+#b2y-settings-panel .b2y-tab.active {
+    color: #fff;
+    border-bottom-color: #f25d8e;
+    font-weight: bold;
+}
+#b2y-settings-panel .b2y-tab-body {
+    max-height: 46vh;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+#b2y-settings-panel .b2y-tab-body::-webkit-scrollbar { width: 6px; }
+#b2y-settings-panel .b2y-tab-body::-webkit-scrollbar-thumb { background: #555; border-radius: 3px; }
+
+/* ================= 评论状态行 + 重试按钮 ================= */
+#b2y-settings-panel .b2y-status-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: 195px;
+    min-width: 0;
+}
+#b2y-cmt-badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+#b2y-cmt-retry,
+.b2y-retry-btn {
+    font-size: 11px;
+    padding: 3px 8px;
+    background: rgba(220, 53, 69, 0.25);
+    border: 1px solid #dc3545;
+    color: #ffbaba;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+#b2y-cmt-retry:hover,
+.b2y-retry-btn:hover { background: rgba(220, 53, 69, 0.5); color: #fff; }
+
+/* ================= 区域实时预览（弹幕占比 / 独立区域） ================= */
+#b2y-region-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 60;
+    transition: opacity 0.3s;
+}
+#b2y-region-preview .b2y-pv-band {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+#b2y-region-preview .b2y-pv-main {
+    top: 0;
+    background: rgba(251, 114, 153, 0.16);
+    border-bottom: 1px dashed rgba(251, 114, 153, 0.95);
+}
+#b2y-region-preview .b2y-pv-sep {
+    bottom: 0;
+    background: rgba(255, 77, 79, 0.16);
+    border-top: 1px dashed rgba(255, 77, 79, 0.95);
+}
+#b2y-region-preview .b2y-pv-band span {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 11px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 1px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.2px;
+}
+#b2y-region-preview .b2y-pv-main span { background: rgba(251, 114, 153, 0.85); }
+#b2y-region-preview .b2y-pv-sep span { top: auto; bottom: 4px; background: rgba(255, 77, 79, 0.85); }
