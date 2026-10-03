@@ -1,0 +1,190 @@
+
+#b2y-settings-panel {
+    all: initial; 
+    position: absolute;
+    bottom: 50px;
+    right: 15px;
+    width: 290px;
+    background: rgba(28, 28, 28, 0.95);
+    color: #eee;
+    border-radius: 12px;
+    padding: 15px;
+    z-index: 100;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    box-sizing: border-box;
+}
+
+#b2y-settings-panel * {
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+#b2y-settings-panel .b2y-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+#b2y-settings-panel .b2y-header-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#b2y-settings-panel .b2y-header-icon {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    color: #fff;
+}
+
+#b2y-status-badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: normal;
+}
+.badge-wait { background: #555; color: #ddd; }
+.badge-success { background: #28a745; color: #fff; }
+.badge-fail { background: #dc3545; color: #fff; }
+
+#b2y-settings-panel .b2y-row {
+    margin-bottom: 12px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.b2y-select {
+    appearance: none;
+    background: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border: 1px solid #555 !important;
+    border-radius: 4px;
+    padding: 4px 8px;
+    width: 140px;
+    cursor: pointer;
+    outline: none;
+}
+.b2y-select:focus { border-color: #f25d8e !important; }
+.b2y-select option { background: #222; color: #fff; }
+
+.b2y-num-input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px;
+    width: 60px;
+    text-align: center;
+    outline: none;
+}
+
+.b2y-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    outline: none;
+}
+.b2y-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #f25d8e;
+    cursor: pointer;
+}
+
+.b2y-color-input {
+    -webkit-appearance: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+.b2y-color-input::-webkit-color-swatch-wrapper { padding: 0; }
+.b2y-color-input::-webkit-color-swatch { border: 1px solid #555; border-radius: 4px; }
+
+.b2y-stepper {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #444;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.b2y-stepper button {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.b2y-stepper button:hover { background: rgba(255,255,255,0.2); }
+.b2y-stepper input {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 6px;
+    outline: none;
+}
+
+.b2y-slider-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+}
+.b2y-slider-wrap span { font-size: 12px; color: #f25d8e; width: 45px; text-align: right; }
+
+.b2y-action-btn {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+.b2y-action-btn:hover { background: rgba(255,255,255,0.2); }
+.b2y-icon-btn { background: none; border:none; color:#aaa; cursor:pointer; }
+.b2y-icon-btn:hover { color:#fff; }
+
+#b2y-block-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+.b2y-tag {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.b2y-tag-local { background: rgba(242, 93, 142, 0.2); border: 1px solid rgba(242, 93, 142, 0.5); }
+.b2y-tag-del { cursor: pointer; color: #ff6b6b; font-weight: bold; }
+.b2y-tag-del:hover { color: #ff0000; }

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "AutoB2Y",
+  "version": "0.1",
+  "description": "在 YouTube 原生播放器上同步显示 Bilibili 弹幕 (Synchronize Bilibili Danmaku on YouTube)",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://api.bilibili.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/watch*"],
+      "js": ["danmaku.min.js", "content_yt.js"],
+      "css": ["style.css"]
+    },
+    {
+      "matches": ["*://www.bilibili.com/video/*"],
+      "js": ["content_bili.js"]
+    }
+  ]
+}
